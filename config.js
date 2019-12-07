@@ -2,7 +2,7 @@ module.exports = {
     dbConfig: {
         host     : 'localhost',
         user     : 'root',
-        password : '3Mazb16MoXcZ1Qmb',
+        password : 'password',
         database : 'db_student'
     },
     // dbConfig: {
