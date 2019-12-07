@@ -11,8 +11,7 @@ function createToken(data, key, time) {
 // 验证登录，没有token或者过期不予放行
 async function checkToken(ctx, next, key) {
     let token = ctx.request.header.authorization;
-    if (token){
-        token = token.split(' ')[1];
+    if ((token = token.split(' ')[1])){
         let res = jwt.decode(token, key);
         //  获取到token
         if (res && res.exp <= new Date()/1000){
