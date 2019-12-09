@@ -15,32 +15,31 @@ async function checkToken(ctx, next, key) {
     // 判断是否为user路由，是的话予以放行
     if (!ctx.request.url.startsWith('/user')) {
         await next();
-        return;
-    }
+    } else {
+        // 验证是否有token
+        let token = ctx.request.header.authorization;
+        if (!token){
+            ctx.body = {
+                code: '002',
+                msg: '没有登录',
+            };
+        }
 
-    // 验证是否有token
-    let token = ctx.request.header.authorization;
-    if (!token){
-        ctx.body = {
-            code: '002',
-            msg: '没有登录',
-        };
-    }
+        // token过期
+        token = token.split(' ')[1];
+        let res = jwt.decode(token, key);
+        //  获取到token
+        if (res && res.exp <= new Date()/1000){
+            ctx.body = {
+                code: '002',
+                msg: '登录过期',
+            };
+            return;
+        }
 
-    // token过期
-    token = token.split(' ')[1];
-    let res = jwt.decode(token, key);
-    //  获取到token
-    if (res && res.exp <= new Date()/1000){
-        ctx.body = {
-            code: '002',
-            msg: '登录过期',
-        };
-        return;
+        // token通过
+        await next();
     }
-
-    // token通过
-    await next();
 }
 
 module.exports = (key, time) => {
