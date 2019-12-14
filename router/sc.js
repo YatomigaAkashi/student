@@ -2,6 +2,6 @@ const Router = require('koa-router');
 const router = new Router();
 const sc = require('../controller/sc');
 
-router.get('/course/getCourses', sc.getScs);
+router.get('/sc/getScs', sc.getScs);
 
 module.exports = router;

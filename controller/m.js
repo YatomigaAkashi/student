@@ -12,7 +12,8 @@ module.exports = {
         }
         ctx.body = {
             code: '001',
-            msg: result
+            msg: 'sucess',
+            data: result
         };
     }
 };

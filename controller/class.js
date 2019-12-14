@@ -12,7 +12,8 @@ module.exports = {
         }
         ctx.body = {
             code: '001',
-            msg: result
+            msg: '获得信息成功',
+            data: result
         };
     },
     getClno: async ctx => {

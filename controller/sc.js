@@ -2,7 +2,8 @@ const sc = require('../model/sc');
 
 module.exports = {
     getScs: async ctx => {
-        let result = await sc.getScs();
+        let sno = ctx.request.query.Sno;
+        let result = await sc.getScs(sno);
         if (!result) {
             ctx.body = {
                 code: '002',
@@ -12,7 +13,8 @@ module.exports = {
         }
         ctx.body = {
             code: '001',
-            msg: result
+            msg: '获取数据成功',
+            data: result
         };
     }
 };

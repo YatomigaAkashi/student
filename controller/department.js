@@ -12,7 +12,8 @@ module.exports = {
         }
         ctx.body = {
             code: '001',
-            msg: result
+            msg: '成功获取数据',
+            data: result
         };
     }
 };
